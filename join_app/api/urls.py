@@ -11,10 +11,4 @@ router.register(r'tasks', TasksView, basename='tasks')
 
 urlpatterns = [
     path('', include(router.urls)),
-    # path('users/', UsersView.as_view()),
-    # path('contacts/', ContactsView.as_view()),
-    # path('market/<int:pk>/', MarketSingelView.as_view(), name='market-detail'),
-    # path('market/<int:pk>/sellers/', SellerOfMarketList.as_view(),),
-    # path('seller/', SellersView.as_view()),
-    # path('seller/<int:pk>/', seller_editing, name='seller-detail'),
 ]

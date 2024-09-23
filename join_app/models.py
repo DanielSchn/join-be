@@ -13,6 +13,10 @@ class Users(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural = 'User'
+    
 
 class Contacts(models.Model):
     name = models.CharField(max_length=100)
@@ -23,6 +27,10 @@ class Contacts(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural = 'Contact'
     
 
 class Tasks(models.Model):
@@ -39,10 +47,6 @@ class Tasks(models.Model):
     def __str__(self):
         return self.title
     
-
-# class Subtasks(models.Model):
-#     task = models.ForeignKey(Tasks, on_delete=models.CASCADE, related_name='subtasks')
-#     title = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.title
+    class Meta:
+        ordering = ['title']
+        verbose_name_plural = 'Task'
