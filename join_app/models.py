@@ -15,7 +15,7 @@ class Users(models.Model):
     
     class Meta:
         ordering = ['name']
-        verbose_name_plural = 'User'
+        verbose_name_plural = 'Users'
     
 
 class Contacts(models.Model):
@@ -30,7 +30,7 @@ class Contacts(models.Model):
     
     class Meta:
         ordering = ['name']
-        verbose_name_plural = 'Contact'
+        verbose_name_plural = 'Contacts'
     
 
 class Tasks(models.Model):
@@ -38,15 +38,15 @@ class Tasks(models.Model):
     description = models.CharField(max_length=500)
     assigned_to = models.ManyToManyField(Users, related_name='tasks')
     due = models.DateField()
-    prio = models.CharField(max_length=100)
-    category = models.IntegerField()
+    prio = models.CharField(max_length=100, help_text="low, medium, urgent")
+    category = models.IntegerField(help_text="1 = User Story, 2 = Technical Task")
     timestamp = models.BigIntegerField()
-    status = models.CharField(max_length=100, default="toDo")
-    subtasks = models.JSONField(default=list, null=True, blank=True)
+    status = models.CharField(max_length=100, default="toDo", help_text="toDo, inProgress, awaitingFeedback, done")
+    subtasks = models.JSONField(default=list, null=True, blank=True, help_text="status: toDo, inProgress, awaitingFeedback, done")
 
     def __str__(self):
         return self.title
     
     class Meta:
         ordering = ['title']
-        verbose_name_plural = 'Task'
+        verbose_name_plural = 'Tasks'

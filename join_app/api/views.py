@@ -8,22 +8,11 @@ class UsersView(viewsets.ModelViewSet):
     serializer_class = UsersSerializer
 
 
-class CreateListUpdateDestroyViewSet(
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
-    mixins.CreateModelMixin,
-    mixins.DestroyModelMixin,
-    mixins.UpdateModelMixin,
-    viewsets.GenericViewSet
-):
-    pass
-
-
-class ContactsView(CreateListUpdateDestroyViewSet):
+class ContactsView(viewsets.ModelViewSet):
     queryset = Contacts.objects.all()
     serializer_class = ContactsSerializer
 
 
-class TasksView(CreateListUpdateDestroyViewSet):
+class TasksView(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
