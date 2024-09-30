@@ -1,21 +1,31 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 
-class Users(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+# class Users(models.Model):
+#     name = models.CharField(max_length=100)
+#     email = models.CharField(max_length=100)
+#     password = models.CharField(max_length=100)
+#     initials = models.CharField(max_length=2)
+#     color = models.CharField(max_length=10)
+
+#     def __str__(self):
+#         return self.name
+    
+#     class Meta:
+#         ordering = ['name']
+#         verbose_name_plural = 'Users'
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     initials = models.CharField(max_length=2)
     color = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.name
-    
-    class Meta:
-        ordering = ['name']
-        verbose_name_plural = 'Users'
+        return self.user.username
     
 
 class Contacts(models.Model):
@@ -36,7 +46,7 @@ class Contacts(models.Model):
 class Tasks(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
-    assigned_to = models.ManyToManyField(Users, related_name='tasks')
+    assigned_to = models.ManyToManyField(User, related_name='tasks')
     due = models.DateField()
     prio = models.CharField(max_length=100, help_text="low, medium, urgent")
     category = models.IntegerField(help_text="1 = User Story, 2 = Technical Task")

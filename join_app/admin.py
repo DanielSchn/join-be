@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tasks, Users, Contacts
+from .models import Tasks, Contacts, UserProfile
 from django.utils import timezone
 from django import forms
 
@@ -20,6 +20,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ['name', 'email']
     exclude = ['password']
 
+
 class ContactAdmin(admin.ModelAdmin):
     list_filter = ['name', 'letter']
     list_display = ['name', 'mail', 'letter', 'number']
@@ -33,5 +34,6 @@ class TaskAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Contacts, ContactAdmin)
-admin.site.register(Users, UserAdmin)
+# admin.site.register(Users, UserAdmin)
+admin.site.register(UserProfile)
 admin.site.register(Tasks, TaskAdmin)
