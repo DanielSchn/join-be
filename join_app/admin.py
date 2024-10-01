@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tasks, Contacts, UserProfile
+from .models import Tasks, Contacts
 from django.utils import timezone
 from django import forms
 
@@ -34,6 +34,5 @@ class TaskAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Contacts, ContactAdmin)
-# admin.site.register(Users, UserAdmin)
-admin.site.register(UserProfile)
+# admin.site.register(User, UserAdmin)
 admin.site.register(Tasks, TaskAdmin)
