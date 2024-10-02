@@ -78,6 +78,12 @@ python manage.py runserver
 python manage.py makemigrations
 python manage.py migrate
 ```
+- Beim ersten Start des Frontends muss der Gast User manuell erstellt werde:
+```
+Name: Guest User
+Email: guest@guest.de
+Passwort: guest
+```
 
 ## Deployment
 Für dieses Projekt gibt es derzeit keine spezifischen Deployment-Anweisungen.
