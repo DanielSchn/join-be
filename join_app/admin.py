@@ -15,12 +15,6 @@ class TaskAdminForm(forms.ModelForm):
         self.fields['category'].initial = '1'
 
 
-class UserAdmin(admin.ModelAdmin):
-    list_filter = ['name']
-    list_display = ['name', 'email']
-    exclude = ['password']
-
-
 class ContactAdmin(admin.ModelAdmin):
     list_filter = ['name', 'letter']
     list_display = ['name', 'mail', 'letter', 'number']
@@ -34,5 +28,4 @@ class TaskAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Contacts, ContactAdmin)
-# admin.site.register(User, UserAdmin)
 admin.site.register(Tasks, TaskAdmin)

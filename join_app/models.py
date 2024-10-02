@@ -3,20 +3,6 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-
-class Users(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    initials = models.CharField(max_length=2)
-    color = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        ordering = ['name']
-        verbose_name_plural = 'Users'
     
 
 class Contacts(models.Model):
