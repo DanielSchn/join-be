@@ -1,6 +1,6 @@
 from rest_framework import generics
 from join_auth_app.models import UserProfile
-from .serializers import UserProfileSerializer, RegistrationSerializer
+from .serializers import UserProfileSerializer, RegistrationSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
@@ -13,6 +13,16 @@ from django.contrib.auth import authenticate
 class UserProfileList(generics.ListCreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetailList(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):

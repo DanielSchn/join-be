@@ -9,6 +9,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ['user', 'initials', 'color']
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+
 class RegistrationSerializer(serializers.ModelSerializer):
 
     repeated_password = serializers.CharField(write_only=True)
