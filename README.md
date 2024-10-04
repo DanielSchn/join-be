@@ -78,7 +78,7 @@ python manage.py runserver
 python manage.py makemigrations
 python manage.py migrate
 ```
-- Beim ersten Start des Frontends muss der Gast User manuell erstellt werde:
+- Beim ersten Start des Frontends muss der Gast User manuell erstellt werden, um diesen nutzen zu können:
 ```
 Name: Guest User
 Email: guest@guest.de
