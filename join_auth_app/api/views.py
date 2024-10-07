@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from join_auth_app.models import UserProfile
 from .serializers import UserProfileSerializer, RegistrationSerializer, UserSerializer
 from rest_framework.views import APIView
@@ -10,62 +10,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
 
-class UserProfileList(generics.ListCreateAPIView):
-    """
-    API-View, die eine Liste der UserProfile anzeigen und ein neues UserProfile erstellen kann.
-
-    - 'GET': Gibt eine Liste aller UserProfile zurück.
-    - 'POST': Erstellt ein neues UserProfile und speichert es.
-
-    Diese View verwendet:
-    - 'queryset': Alle 'UserProfile'-Objekte.
-    """
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
-
-
-class UserList(generics.ListAPIView):
-    """
-    API-View, die eine Liste der User anzeigen kann.
-
-    - 'GET': Gibt eine Liste aller UserProfile zurück.
-
-    Diese View verwendet:
-    - 'queryset': Alle 'User'-Objekte.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetailList(generics.RetrieveUpdateAPIView):
-    """
-    API-View, die die Details eines bestimmten Benutzers anzeigt oder aktualisiert.
-
-    - 'GET': Gibt die Details eines Benutzers zurück.
-    - 'PUT/PATCH': Aktualisiert die Daten eines bestimmten Benutzers.
-    
-    Berechtigungen:
-    - Authentifizierte Benutzer können Benutzerprofile aktualisieren.
-    - Nicht authentifizierte Benutzer haben nur Lesezugriff.
-    
-    Diese View verwendet:
-    - 'queryset': Alle 'User'-Objekte.
-    - 'permission_classes': Authentifizierung erforderlich zum Ändern ('IsAuthenticatedOrReadOnly').
-    """
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-class UserProfileDetail(generics.RetrieveAPIView):
-    """
-    API-View, die die Details eines bestimmten Benutzers anzeigt.
-
-    - 'GET': Gibt die Details eines UserProfiles zurück.
-    
-    Diese View verwendet:
-    - 'queryset': Alle 'UserProfile'-Objekte.
-    """
+class ProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
 
