@@ -6,6 +6,25 @@ from django.contrib.auth.models import User
     
 
 class Contacts(models.Model):
+    """
+    Modell für Kontakte.
+
+    Dieses Modell speichert Kontaktinformationen für Benutzer.
+    Es enthält die folgenden Felder:
+
+    - **name**: Der Name des Kontakts (string, max. 100 Zeichen).
+    - **mail**: Die E-Mail-Adresse des Kontakts (string, max. 100 Zeichen).
+    - **number**: Die Telefonnummer des Kontakts (string, max. 100 Zeichen).
+    - **letter**: Eine zwei Zeichen lange Abkürzung oder Kennung für den Kontakt (string, max. 2 Zeichen).
+    - **color**: Eine bevorzugte Farbe für den Kontakt (string, max. 10 Zeichen).
+
+    Methoden:
+    - **__str__()**: Gibt den Namen des Kontakts als lesbare Darstellung zurück.
+
+    Meta-Optionen:
+    - **ordering**: Kontakte werden standardmäßig nach Namen sortiert.
+    - **verbose_name_plural**: Der Name für die Pluralform im Admin-Bereich.
+    """
     name = models.CharField(max_length=100)
     mail = models.CharField(max_length=100)
     number = models.CharField(max_length=100)
@@ -21,6 +40,29 @@ class Contacts(models.Model):
     
 
 class Tasks(models.Model):
+    """
+    Modell für Aufgaben.
+
+    Dieses Modell speichert Aufgabeninformationen und verknüpft sie mit Benutzern.
+    Es enthält die folgenden Felder:
+
+    - **title**: Der Titel der Aufgabe (string, max. 100 Zeichen).
+    - **description**: Eine detaillierte Beschreibung der Aufgabe (string, max. 500 Zeichen).
+    - **assigned_to**: Ein ManyToMany-Feld, das angibt, welche Benutzer der Aufgabe zugewiesen sind.
+    - **due**: Das Fälligkeitsdatum der Aufgabe (Datum).
+    - **prio**: Die Priorität der Aufgabe (string, max. 100 Zeichen; mögliche Werte: "low", "medium", "urgent").
+    - **category**: Eine ganze Zahl zur Kategorisierung der Aufgabe (integer; 1 = User Story, 2 = Technical Task).
+    - **timestamp**: Ein Zeitstempel für die Erstellung oder Aktualisierung der Aufgabe (BigInteger).
+    - **status**: Der Status der Aufgabe (string, max. 100 Zeichen; Standardwert: "toDo", mögliche Werte: "toDo", "inProgress", "awaitingFeedback", "done").
+    - **subtasks**: Eine JSONField, die eine Liste von Unteraufgaben speichert (standardmäßig eine leere Liste).
+
+    Methoden:
+    - **__str__()**: Gibt den Titel der Aufgabe als lesbare Darstellung zurück.
+
+    Meta-Optionen:
+    - **ordering**: Aufgaben werden standardmäßig nach Titel sortiert.
+    - **verbose_name_plural**: Der Name für die Pluralform im Admin-Bereich.
+    """
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     assigned_to = models.ManyToManyField(User, related_name='tasks')

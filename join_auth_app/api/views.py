@@ -11,14 +11,69 @@ from django.contrib.auth import authenticate
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    API-ViewSet zur Verwaltung von Benutzern.
+
+    Diese View bietet folgende Funktionen:
+    
+    - **List**: Gibt eine Liste aller Benutzer zurück.
+      - **GET**: '/user/'
+      
+    - **Retrieve**: Gibt die Details eines bestimmten Benutzers zurück.
+      - **GET**: '/user/<id>/'
+      
+    - **Create**: Erstellt einen neuen Benutzer.
+      - **POST**: '/user/'
+      
+    - **Update**: Aktualisiert die Daten eines bestimmten Benutzers.
+      - **PUT**: '/user/<id>/'
+      - **PATCH**: '/user/<id>/'
+      
+    - **Destroy**: Löscht einen bestimmten Benutzer.
+      - **DELETE**: '/user/<id>/'
+
+    Berechtigungen:
+    - Authentifizierte Benutzer können Benutzer erstellen, aktualisieren oder löschen.
+    - Nicht authentifizierte Benutzer haben nur Lesezugriff (GET).
+
+    Diese View verwendet:
+    - 'queryset': Alle 'User'-Objekte.
+    - 'permission_classes': 'IsAuthenticatedOrReadOnly', um den Zugriff zu steuern.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
+    """
+    API-ViewSet zur Verwaltung von Benutzerprofilen.
+
+    Diese View bietet folgende Funktionen:
+    
+    - **List**: Gibt eine Liste aller Benutzerprofile zurück.
+      - **GET**: '/profiles/'
+      
+    - **Retrieve**: Gibt die Details eines bestimmten Benutzerprofils zurück.
+      - **GET**: '/profiles/<id>/'
+      
+    - **Create**: Erstellt ein neues Benutzerprofil.
+      - **POST**: '/profiles/'
+      
+    - **Update**: Aktualisiert die Daten eines bestimmten Benutzerprofils.
+      - **PUT**: '/profiles/<id>/'
+      - **PATCH**: '/profiles/<id>/'
+      
+    - **Destroy**: Löscht ein bestimmtes Benutzerprofil.
+      - **DELETE**: '/profiles/<id>/'
+
+    Diese View verwendet:
+    - 'queryset': Alle 'UserProfile'-Objekte.
+    - Keine Authentifizierung erforderlich ('AllowAny').
+    """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+    permission_classes = [AllowAny]
 
 
 class CustomLoginView(ObtainAuthToken):
