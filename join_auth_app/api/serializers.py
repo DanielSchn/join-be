@@ -23,6 +23,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(write_only=True, required=True)
     last_name = serializers.CharField(write_only=True, required=True)
 
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password', 'repeated_password', 'initials', 'color', 'first_name', 'last_name']
