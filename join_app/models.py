@@ -64,8 +64,8 @@ class Tasks(models.Model):
     - **verbose_name_plural**: Der Name für die Pluralform im Admin-Bereich.
     """
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
-    assigned_to = models.ManyToManyField(User, related_name='tasks')
+    description = models.CharField(max_length=500, null=True, blank=True)
+    assigned_to = models.ManyToManyField(User, related_name='tasks', blank=True)
     due = models.DateField()
     prio = models.CharField(max_length=100, help_text="low, medium, urgent")
     category = models.IntegerField(help_text="1 = User Story, 2 = Technical Task")
