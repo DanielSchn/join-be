@@ -75,9 +75,16 @@ Hier einige nützliche Befehle:
 ```
 python manage.py runserver
 ```
-### Nach der Ersten Einrichtung muss der Gast User manuell erstellt werden. Dies kann auf zwei Wege realisiert werden.
+### Nach der Ersten Einrichtung muss der Gast User manuell erstellt werden. Dies kann auf drei Wege realisiert werden.
 
-#### 1. Weg über das Terminal und die Shell von Django
+#### 1. Über ein custom management command
+
+- Dafür muss nur folgende Zeile im Terminal ausgeführt werden:
+```
+python manage.py create_guest_user
+```
+
+#### 2. Weg über das Terminal und die Shell von Django
 
 - Dafür folgende Befehle im Terminal eingeben:
 ```
@@ -96,7 +103,7 @@ color = '#DC3DF5'
 UserProfile.objects.create(user=account, initials=initials, color=color)
 ```
 
-#### 2. Weg über das Frontend einen User registrieren
+#### 3. Weg über das Frontend einen User registrieren
 - Oben rechts auf Sign up klicken und folgende Daten nutzen:
 ```
 Full Name: Guest User
