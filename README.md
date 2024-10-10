@@ -4,6 +4,7 @@ Ein Backend-Projekt zum speichern der Daten aus dem Frontend-Projekt JOIN der De
 
 ## Funktionen
 - User registrieren mit Name, Mail und Passwort.
+- Eigenen User bearbeiten: Vorname, Nachname und Email
 - Kanban Tasks erstellen, bearbeiten und löschen
 - Kontakte anlegen, bearbeiten und löschen
 
@@ -26,7 +27,7 @@ Virtuelles Python-Umfeld erstellen und aktivieren
 ```
 python -m venv env
 source env/bin/activate # Linux/Mac
-"env/Scripts/activate"
+"env/Scripts/activate" # Windows
 ```
 ### 3. Abhängigkeiten installieren
 ```
@@ -67,16 +68,48 @@ MIDDLEWARE = [
 Diese Einstellungen ermöglichen Cross-Origin-Anfragen vom lokalen Frontend, das auf `localhost:5500` läuft.
 
 ## Nutzung
-Nachdem der Server läuft, kannst du die API verwenden, um Posts zu erstellen, zu liken, zu kommentieren und den Feed anzusehen. Hier einige nützliche Befehle:
+Nachdem der Server läuft, kann die API verwendet werden, um User zu registrieren, sich einzuloggen, Task zu erstellen / ändern / löschen, Kontakte erstellen / ändern / löschen.<br>
+Hier einige nützliche Befehle:
 
 - Starte den Entwicklungsserver:
 ```
 python manage.py runserver
 ```
-- Migriere die Datenbank:
+### Nach der Ersten Einrichtung muss der Gast User manuell erstellt werden. Dies kann auf drei Wege realisiert werden.
+
+#### 1. Über ein custom management command
+
+- Dafür muss nur folgende Zeile im Terminal ausgeführt werden:
 ```
-python manage.py makemigrations
-python manage.py migrate
+python manage.py create_guest_user
+```
+
+#### 2. Weg über das Terminal und die Shell von Django
+
+- Dafür folgende Befehle im Terminal eingeben:
+```
+python manage.py shell
+from django.contrib.auth.models import User
+from join_auth_app.models import UserProfile
+```
+- Dann folgende Befehle komplett in die Shell kopieren. Diese werden dann automatisch nacheinander ausgeführt. Nach der letzten Zeile muss evtl. noch die Return Tast auf der Tastatur einmal bestätigt werden:
+```
+account = User.objects.create_user(username='guest', email='guest@guest.de', password='guest')
+account.first_name = 'Guest'
+account.last_name = 'User'
+account.save()
+initials = 'GU'
+color = '#DC3DF5'
+UserProfile.objects.create(user=account, initials=initials, color=color)
+```
+
+#### 3. Weg über das Frontend einen User registrieren
+- Oben rechts auf Sign up klicken und folgende Daten nutzen:
+```
+Full Name: Guest User
+Email: guest@guest.de
+Password: guest
+Confirm Password: guest
 ```
 
 ## Deployment
