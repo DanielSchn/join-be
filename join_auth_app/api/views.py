@@ -2,7 +2,7 @@ from rest_framework import generics, viewsets
 from join_auth_app.models import UserProfile
 from .serializers import UserProfileSerializer, RegistrationSerializer, UserSerializer
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -42,7 +42,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -73,7 +73,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
 class CustomLoginView(ObtainAuthToken):
