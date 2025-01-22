@@ -103,8 +103,8 @@ class Command(BaseCommand):
                 'subtasks': []
             },
             {
-                'title': 'Implementierung einer neuen Funktion',
-                'description': 'Implementierung einer neuen Funktion in einer bestehenden Anwendung',
+                'title': 'Optimierung der Datenbank-Performance',
+                'description': 'Optimierung der Datenbank-Performance, um die Ladezeit zu reduzieren und die Benutzererfahrung zu verbessern.',
                 'assigned_to': [
                     User.objects.get(username='john_doe').id,
                     User.objects.get(username='jane_smith').id,
@@ -118,8 +118,10 @@ class Command(BaseCommand):
                 'timestamp': 1643723400,
                 'status': 'inProgress',
                 'subtasks': [
-                    {'title': 'Erstellung des Designs', 'status': 'done'},
-                    {'title': 'Implementierung der Funktion', 'status': 'inProgress'}
+                    {'title': 'Analyse der Datenbank-Performance', 'status': 'done'},
+                    {'title': 'Optimierung der Datenbank-Abfragen',
+                        'status': 'inProgress'},
+                    {'title': 'Implementierung von Caching', 'status': 'toDo'}
                 ]
             },
         ]
