@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from join_auth_app.api.views import TokenCheckView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('join_app.api.urls')),
     path('api/auth/', include('join_auth_app.api.urls')),
+    path('api/token-check/', TokenCheckView.as_view(), name='token-check'),
 ]

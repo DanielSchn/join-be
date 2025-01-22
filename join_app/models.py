@@ -70,7 +70,7 @@ class Tasks(models.Model):
     prio = models.CharField(max_length=100, help_text="low, medium, urgent")
     category = models.IntegerField(help_text="1 = User Story, 2 = Technical Task")
     timestamp = models.BigIntegerField()
-    status = models.CharField(max_length=100, default="toDo", help_text="toDo, inProgress, awaitingFeedback, done")
+    status = models.CharField(max_length=100, default="toDo", help_text="toDo, inProgress, awaitFeedback, done")
     subtasks = models.JSONField(default=list, null=True, blank=True, help_text="status: toDo, inProgress, awaitingFeedback, done")
 
     def __str__(self):

@@ -153,3 +153,16 @@ class RegistrationView(APIView):
             data = serializer.errors
         return Response(data)
     
+
+class TokenCheckView(APIView):
+    """
+    Endpoint to check if the provided token is valid.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """
+        Checks if the user is authenticated with a valid token.
+        Returns true if the token is valid, otherwise false.
+        """
+        return Response({"valid": True}, status=200)
