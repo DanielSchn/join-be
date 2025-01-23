@@ -28,7 +28,7 @@ class Command(BaseCommand):
             account = User.objects.create_user(
                 username='guest',
                 email='guest@guest.de',
-                password='guest'
+                password='secureGuestUserPassword'
             )
             account.first_name = 'Guest'
             account.last_name = 'User'
